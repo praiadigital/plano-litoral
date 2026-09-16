@@ -2,50 +2,37 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Plano Litoral — quanto falta pro seu apê na praia?</title>
-<meta name="description" content="Planejador financeiro interativo para conquistar seu imóvel no litoral. Satélite da rede praia.digital">
-<style>
-body{margin:0;font-family:system-ui,sans-serif;background:linear-gradient(180deg,#fff8e7,#e0f7fa);color:#264653;min-height:100vh}
-header{padding:24px;text-align:center;background:linear-gradient(120deg,#e76f51,#f4a261);color:#fff}
-nav a{color:#fff;margin:0 8px;text-decoration:none;font-size:14px;font-weight:600}
-.wrap{max-width:760px;margin:auto;padding:24px}
-.panel{background:#fff;border-radius:16px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.08);margin-bottom:20px}
-label{display:block;margin:14px 0 4px;font-weight:600}
-input,select{width:100%;padding:12px;border-radius:10px;border:2px solid #eee;font-size:16px}
-.out{font-size:18px;margin:10px 0}
-big{font-size:34px;color:#e76f51;font-weight:800}
-canvas{width:100%;height:220px;background:#fafafa;border-radius:12px;margin-top:10px}
-footer{padding:20px;text-align:center;font-size:13px}
-footer a{color:#e76f51}
-</style></head>
+<title>Plano Litoral — Planejador Financeiro do seu Imóvel na Praia</title>
+<meta name="description" content="Planeje a compra do seu imóvel no litoral: simule economia mensal, entrada e prazo com projeção visual.">
+<style>body{font-family:system-ui;margin:0;background:#f0f9ff;color:#0c4a6e}header{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;padding:2rem 1rem;text-align:center}header a{color:#bae6fd}main{max-width:720px;margin:1.5rem auto;padding:0 1rem}.card{background:#fff;border-radius:12px;padding:1.2rem;margin:1rem 0;box-shadow:0 2px 8px rgba(2,132,199,.15)}input{font-size:1rem;padding:.55rem;border-radius:8px;border:1px solid #7dd3fc;width:100%;box-sizing:border-box;margin:.25rem 0}button{background:#0284c7;color:#fff;border:0;border-radius:8px;padding:.6rem;font-weight:700;cursor:pointer;width:100%}canvas{width:100%;background:#fff;border-radius:12px}.big{font-size:1.6rem;font-weight:800;color:#0369a1}footer{text-align:center;font-size:.85rem;padding:2rem 1rem;color:#0369a1}.net{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-top:.8rem}.net a{background:#e0f2fe;color:#075985;padding:.3rem .6rem;border-radius:999px;text-decoration:none;font-size:.8rem}</style>
+</head>
 <body>
-<header><h1>🌅 Plano Litoral</h1><p>Quanto falta para o seu apê na praia? Descubra em 30 segundos.</p>
-<nav><a href="https://praia.digital">Praia Digital</a><a href="https://praia.digital/radar-precos">Radar de Preços</a><a href="https://praia.digital/simulador-credito">Simulador de Crédito</a><a href="https://praia.digital/apps">Todos os apps</a></nav></header>
-<div class="wrap"><div class="panel">
-<label>🏷️ Valor do imóvel dos sonhos (R$)</label><input type="number" id="valor" value="500000" oninput="calc()">
-<label>💰 Quanto você já tem (R$)</label><input type="number" id="tem" value="60000" oninput="calc()">
-<label>📅 Guarda por mês (R$)</label><input type="number" id="mes" value="2500" oninput="calc()">
-<label>📈 Rendimento anual da aplicação (%)</label><input type="number" id="taxa" value="10" oninput="calc()">
-</div><div class="panel" id="res"></div></div>
-<footer>Rede <a href="https://praia.digital">praia.digital</a> · <a href="https://praia.digital/calculadoras">Calculadoras</a> · <a href="https://praia.digital/guia-comprador">Guia do Comprador</a> · <a href="https://praia.digital/match-praia">Match Praia</a></footer>
+<header><h1>🧭 Plano Litoral</h1><p>Do sonho à chave: seu plano financeiro para comprar na praia.</p><a href="https://praia.digital">← praia.digital</a> · <a href="https://praia.digital/apps">Hub de apps</a></header>
+<main>
+<div class="card">
+<label>Valor do imóvel dos sonhos (R$)</label><input id="v" type="number" value="550000">
+<label>Quanto você já tem (R$)</label><input id="at" type="number" value="80000">
+<label>Guarda por mês (R$)</label><input id="m" type="number" value="3500">
+<label>Rendimento mensal (%)</label><input id="r" type="number" value="0.8" step="0.1">
+<button onclick="calc()">Traçar meu plano</button>
+</div>
+<div class="card" id="out" style="display:none"><p class="big" id="prazo"></p><p id="det"></p><canvas id="cv" width="700" height="220"></canvas></div>
+<div class="card"><h3>Acelere com</h3><p>💹 <a href="https://praia.digital/temporada-pro">Temporada Pro — renda com locação</a><br>💙 <a href="https://praia.digital/match-praia">Match Praia — qual imóvel combina com você</a><br>📡 <a href="https://praia.digital/radar-precos">Radar de Preços</a></p></div>
+</main>
+<footer><b>Rede Praia Digital</b><div class="net"><a href="https://praia.digital/apps">Hub</a><a href="https://praia.digital/praiascore">PraiaScore</a><a href="https://praia.digital/ondata">Ondata</a><a href="https://praia.digital/vizinho-digital">Vizinho Digital</a><a href="https://praia.digital/mapa-investidor">Mapa Investidor</a><a href="https://praia.digital/marea">Maréa</a><a href="https://praia.digital/tour-360">Tour 360</a><a href="https://praia.digital/checklist-anfitriao">Checklist</a></div><p>© 2026 Praia Digital</p></footer>
 <script>
-function fmt(v){return 'R$ '+Math.round(v).toLocaleString('pt-BR')}
 function calc(){
-const V=+valor.value||0,T=+tem.value||0,M=+mes.value||0,r=(+taxa.value||0)/100/12;
-const entrada=V*0.2,custos=V*0.06,meta=entrada+custos;
-let saldo=T,meses=0,serie=[saldo];
-while(saldo<meta&&meses<600){saldo=saldo*(1+r)+M;meses++;serie.push(saldo);}
-const anos=(meses/12).toFixed(1);
-let html;
-if(T>=meta)html=`<p class="out">🎉 Você já tem o suficiente para a entrada + custos (${fmt(meta)})! </p><p class="out">Próximo passo: simular o financiamento dos ${fmt(V-entrada)} restantes no <a href="https://praia.digital/simulador-credito">Simulador de Crédito</a>.</p>`;
-else if(M<=0)html='<p class="out">⚠️ Defina um aporte mensal maior que zero.</p>';
-else html=`<p class="out">Meta (entrada 20% + custos 6%): <b>${fmt(meta)}</b></p><p class="out">⏱️ Faltam <big>${meses} meses</big> (~${anos} anos) para dar entrada no seu apê de ${fmt(V)}.</p><p class="out">💡 Aumentando o aporte em R$ 500/mês, você chega lá ${meses>0?'~'+Math.max(0,Math.round(meses-M/meses*8))+' meses antes':''}.</p>`;
-html+='<canvas id="cv" width="700" height="220"></canvas>';
-res.innerHTML=html;
-const cv=document.getElementById('cv'),ctx=cv.getContext('2d');const mx=Math.max(...serie,meta);
-ctx.strokeStyle='#ddd';ctx.beginPath();ctx.moveTo(0,200-(meta/mx)*180);ctx.lineTo(700,200-(meta/mx)*180);ctx.stroke();
-ctx.fillStyle='#e76f51';ctx.fillText('Meta',6,196-(meta/mx)*180);
-ctx.strokeStyle='#2a9d8f';ctx.lineWidth=3;ctx.beginPath();
-serie.forEach((s,i)=>{const x=i/(serie.length-1)*700,y=200-(s/mx)*180;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();}
-calc();
-</script></body></html>
+ const V=+v.value;let saldo=+at.value,mes=+m.value,r=+r.value/100,pts=[],n=0;
+ while(saldo<V*0.25&&n<600){saldo=saldo*(1+r)+mes;pts.push(saldo);n++;}
+ document.getElementById('out').style.display='block';
+ if(n>=600){document.getElementById('prazo').textContent='⏳ Com esse ritmo, leva mais de 50 anos. Ajuste os valores!';return;}
+ document.getElementById('prazo').textContent='🔑 Entrada de 25% em '+n+' meses ('+(n/12).toFixed(1)+' anos)';
+ document.getElementById('det').textContent='Meta de entrada: R$ '+(V*0.25).toLocaleString('pt-BR')+' · Financiamento estimado: R$ '+(V*0.75).toLocaleString('pt-BR')+'.';
+ const c=document.getElementById('cv').getContext('2d');c.clearRect(0,0,700,220);c.strokeStyle='#0284c7';c.lineWidth=2;c.beginPath();
+ const mx=Math.max(...pts,V*0.25);
+ pts.forEach((p,i)=>{const x=i/(pts.length-1)*680+10,y=200-p/mx*180;i?c.lineTo(x,y):c.moveTo(x,y);});c.stroke();
+ c.strokeStyle='#dc2626';c.setLineDash([4,4]);const gy=200-(V*0.25)/mx*180;c.beginPath();c.moveTo(10,gy);c.lineTo(690,gy);c.stroke();
+}
+</script>
+</body>
+</html>
